@@ -1,0 +1,70 @@
+let tamanho = 50
+let contador = 0
+let click = 0
+let t = 0
+let pode = false
+podeg = true
+let record = 0
+let records = 0
+
+function keyPressed() {
+  if (key == "C" || key == "c") {
+    if (podeg == true) {
+    tamanho += 2
+    click += 1
+    }
+    if (click > 0) {
+      pode = true
+    }
+  }
+  
+  if (key == "r" || key == "R") {
+    contador = 0
+    click = 0
+    t = 0
+    pode = false
+    podeg = true
+    tamanho = 50
+    
+  }
+  
+}
+
+function setup() {
+  createCanvas(600, 400);   // cria a tela
+  textSize(18);             // tamanho da fonte
+}
+
+function draw() {
+  let s = deltaTime / 1000
+  if (pode == true) {
+  t += s
+  }
+  background(255);
+  fill("black");
+  fill("red")
+  circle(300,200,tamanho)
+  fill("blue")
+  text(click,100,300)
+  text("TEMPO",480,380)
+  text(round(t),500,400)
+  console.log(pode)
+  
+  if (t >= 10) {
+    podeg = false
+    pode = false
+  }
+  
+  if (click > record) {
+    record = click
+    records = record
+  }
+  
+  if (podeg == true) {
+  text("CLIQUE NO ESPAÇO O MÁXIMO QUE CONSEGUIR EM 10 SEGUNDOS \n QUANTO MAIS VOCE CLICAR MAIS GORDA A BOLINHA FICA", 0, 20);
+  }
+  else if (podeg == false) {
+     text("Sua pontuação foi de " + click + ", seu recorde é de  " + record + " clique R para reniciar o jogo", 0, 20);
+  }
+  console.log(records)
+}
